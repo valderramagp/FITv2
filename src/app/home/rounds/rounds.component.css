@@ -1,0 +1,7 @@
+.disabledChallenge:hover {
+	cursor: not-allowed
+}
+
+.list-group-item:hover {
+	cursor: pointer;
+}

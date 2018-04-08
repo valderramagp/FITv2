@@ -1,0 +1,69 @@
+<div class="modal-header">
+	<h5 class="modal-title">Crea una cuenta</h5>
+	<button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<div class="modal-body">
+	<form (ngSubmit)="validarFormulario()" [formGroup]="form" novalidate>
+		<div class="form-group row">
+			<div class="col">
+				<input type="text" class="form-control" name="nombre" id="nombre" formControlName="nombre" placeholder="Nombre" autocomplete="off"
+				 [class.is-invalid]="formSubmitted && form.controls.nombre.invalid" [class.is-valid]="formSubmitted && form.controls.nombre.valid">
+				<div class="invalid-feedback">Campo requerido.</div>
+			</div>
+			<div class="col">
+				<input type="text" class="form-control" name="apellido" id="apellido" formControlName="apellido" placeholder="Apellido" autocomplete="off"
+				 [class.is-invalid]="formSubmitted && form.controls.apellido.invalid" [class.is-valid]="formSubmitted && form.controls.apellido.valid">
+				<div class="invalid-feedback">Campo inválido.</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<input type="email" class="form-control" name="correo" id="correo" formControlName="correo" placeholder="Correo" autocomplete="off"
+			 [class.is-invalid]="formSubmitted && form.controls.correo.invalid" [class.is-valid]="formSubmitted && form.controls.correo.valid">
+			<div class="invalid-feedback">
+				Campo inválido.
+			</div>
+		</div>
+		<div class="form-group">
+			<input type="password" class="form-control" name="password" id="password" formControlName="password" placeholder="Contraseña"
+			 autocomplete="off" [class.is-invalid]="formSubmitted && form.controls.password.invalid" [class.is-valid]="formSubmitted && form.controls.password.valid">
+			<div class="invalid-feedback">Campo inválido.</div>
+		</div>
+		<div class="form-group row">
+			<div class="col">
+				<input type="number" class="form-control" name="edad" id="edad" formControlName="edad" placeholder="Edad" autocomplete="off"
+				 min="0" [class.is-invalid]="formSubmitted && form.controls.edad.invalid" [class.is-valid]="formSubmitted && form.controls.edad.valid">
+				<div class="invalid-feedback">Campo inválido.</div>
+			</div>
+			<div class="col">
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="genero" id="genero" value="h" formControlName="genero" [class.is-invalid]="formSubmitted && form.controls.genero.invalid"
+					 [class.is-valid]="formSubmitted && form.controls.genero.valid">
+					<label class="form-check-label" for="inlineRadio1">Hombre</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="genero" id="genero" value="m" formControlName="genero" [class.is-invalid]="formSubmitted && form.controls.genero.invalid"
+					 [class.is-valid]="formSubmitted && form.controls.genero.valid">
+					<label class="form-check-label" for="inlineRadio2">Mujer</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<select name="nivel" id="nivel" aria-placeholder="Elige tu nivel" class="form-control" formControlName="nivel" [class.is-invalid]="formSubmitted && form.controls.nivel.invalid"
+			 [class.is-valid]="formSubmitted && form.controls.nivel.valid">
+				<option value="" disabled>Elige tu nivel</option>
+				<option [value]="0">Verde (Principiante)</option>
+				<option [value]="1">Azul (Medio)</option>
+				<option [value]="2">Negro (Avanzado)</option>
+			</select>
+			<div class="invalid-feedback">Campo inválido.</div>
+		</div>
+		<input type="submit" value="" class="d-none" #btnSubmit>
+	</form>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-primary" (click)="btnSubmit.click()">Registrar</button>
+</div>
+
+<ng-template #campoRequerido>Campo inválido.</ng-template>

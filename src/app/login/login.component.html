@@ -1,0 +1,20 @@
+<div class="container text-center" id="form-container">
+	<img src="assets/images/FITv2.png" class="img-fluid" alt="">
+	<form class="" [formGroup]="form" (ngSubmit)="login()" novalidate>
+		<div class="form-group text-right">
+			<input type="email" class="form-control" name="correo" id="correo" formControlName="correo" placeholder="Correo electrónico" [class.is-valid]="formSubmitted && form.controls.correo.valid" [class.is-invalid]="formSubmitted && form.controls.correo.invalid">
+			<div class="invalid-feedback">Campo inválido.</div>
+		</div>
+		<div class="form-group text-right">
+			<input type="password" name="password" id="password" class="form-control" formControlName="password" placeholder="Contraseña" [class.is-valid]="formSubmitted && form.controls.password.valid"[class.is-invalid]="formSubmitted && form.controls.password.invalid" >
+			<div class="invalid-feedback">Campo inválido.</div>
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+			<button type="button" class="btn btn-secondary btn-block" (click)="register()">Registrarse</button>
+		</div>
+		<div class="form-group justify-content-center">
+			<a (click)="restorePassword()" href="javascript:void(0)">Olvidé mi contraseña.</a>
+		</div>
+	</form>
+</div>

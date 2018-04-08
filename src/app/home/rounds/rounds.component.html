@@ -1,0 +1,53 @@
+<div class="container-fluid">
+	<div class="row mb-3 mt-2">
+		<div class="col-md-12">
+			<div class="progress" style="height: 20px;">
+				<div [class]="'progress-bar ' + profile?.backgroundColor" role="progressbar" style="width: 16.6%;" aria-valuenow="16.6" aria-valuemin="0" aria-valuemax="100">R1</div>
+				<div class="progress-bar bg-transparent text-dark disabledChallenge" role="progressbar" style="width: 16.6%;" aria-valuenow="16.6" aria-valuemin="0" aria-valuemax="100">R2</div>
+				<div class="progress-bar bg-transparent text-dark disabledChallenge" role="progressbar" style="width: 16.6%;" aria-valuenow="16.6" aria-valuemin="0" aria-valuemax="100">R3</div>
+				<div class="progress-bar bg-transparent text-dark disabledChallenge" role="progressbar" style="width: 16.6%;" aria-valuenow="16.6" aria-valuemin="0" aria-valuemax="100">R4</div>
+				<div class="progress-bar bg-transparent text-dark disabledChallenge" role="progressbar" style="width: 16.6%;" aria-valuenow="16.6" aria-valuemin="0" aria-valuemax="100">R5</div>
+				<div class="progress-bar bg-transparent text-dark disabledChallenge" role="progressbar" style="width: 16.6%;" aria-valuenow="16.6" aria-valuemin="0" aria-valuemax="100">R6</div>
+			</div>
+		</div>
+	</div>
+	<div class="row mb-4">
+		<div class="col-md-1"></div>
+		<div class="col-md-2">
+			<div class="card border-0 bg-transparent">
+				<img src="assets/images/FITv2.png" class="card-img" width="40%">
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-8">
+			<div class="card" *ngIf="roundActivo">
+				<div class="card-body">
+					<h5 [class]="'card-title text-center ' + profile?.textColor"> Round {{ roundActivo?.descripcion?.numero }} - {{ roundActivo?.descripcion?.nombre }} </h5>
+					<p class="card-text" [innerHTML]="roundActivo?.descripcion?.contenido" ></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="card-deck mb-5" *ngIf="profile">
+		<div class="card" *ngFor="let reto of roundActivo?.retos">
+			<div class="card-body">
+				<h5 [class]="'card-title ' + profile?.textColor" >Reto {{reto?.nombre}}</h5>
+				<!-- <p class="card-subtitle text-muted">UNA VEZ QUE COMPLETES TU RUTINA MARCA LA CASILLA</p> -->
+				<ng-container *ngIf="reto.niveles[profile.nivel].titulo; let titulo">
+					<p class="card-text" [innerHTML]="titulo"></p>
+				</ng-container>
+				<ul class="list-group list-group-flush" [formGroup]="reto.form"  >
+					<li class="list-group-item d-flex justify-content-between" *ngFor="let dia of reto.niveles[profile.nivel].dias; let i = index">
+						<span (click)="check.click()">Día {{i + 1}}: {{ dia.reto }}</span>
+						<div class="form-check">
+							<input class="form-check-input" #check type="checkbox" value="1" formControlName="{{i}}" >
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="card-footer" *ngIf="reto.extra">
+				<p class="card-text" [innerHTML]="reto.extra"></p>
+			</div>
+		</div>
+	</div>
+</div>
