@@ -25,17 +25,16 @@
 			</div>
 		</div>
 	</div>
-	<div class="card-deck mb-5" *ngIf="profile">
+	<div class="card-deck mb-5" *ngIf="profile && roundActivo">
 		<div class="card" *ngFor="let reto of roundActivo?.retos">
 			<div class="card-body">
 				<h5 [class]="'card-title ' + profile?.textColor" >Reto {{reto?.nombre}}</h5>
-				<!-- <p class="card-subtitle text-muted">UNA VEZ QUE COMPLETES TU RUTINA MARCA LA CASILLA</p> -->
 				<ng-container *ngIf="reto.niveles[profile.nivel].titulo; let titulo">
 					<p class="card-text" [innerHTML]="titulo"></p>
 				</ng-container>
-				<ul class="list-group list-group-flush" [formGroup]="reto.form"  >
+				<ul class="list-group list-group-flush" [formGroup]="reto.form">
 					<li class="list-group-item d-flex justify-content-between" *ngFor="let dia of reto.niveles[profile.nivel].dias; let i = index">
-						<span (click)="check.click()">Día {{i + 1}}: {{ dia.reto }}</span>
+						<span (click)="check.click()">Día {{i + 1}}{{ dia.reto ? ": " + dia.reto : "" }}</span>
 						<div class="form-check">
 							<input class="form-check-input" #check type="checkbox" value="1" formControlName="{{i}}" >
 						</div>
