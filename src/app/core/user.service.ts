@@ -8,6 +8,7 @@ import { Niveles } from '../shared/enums/niveles.enum';
 @Injectable()
 export class UserService {
   $profile = new ReplaySubject<Profile>(0);
+  profile: Profile;
   private levelColors = {
     [Niveles.AVANZADO]: "dark",
     [Niveles.MEDIO]: "primary",
@@ -24,6 +25,7 @@ export class UserService {
     profile.backgroundColor = "bg-" + this.levelColors[profile.nivel];
     profile.textColor = "text-" + this.levelColors[profile.nivel];
     this.$profile.next(profile);
+    this.profile = profile;
   }
 
 }

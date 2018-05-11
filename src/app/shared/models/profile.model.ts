@@ -7,4 +7,5 @@ export class Profile {
 	usuario: string;
 	backgroundColor: string;
 	textColor: string;
+	admin: boolean;
 }

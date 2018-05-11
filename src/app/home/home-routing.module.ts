@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RoundsComponent } from './rounds/rounds.component';
 import { HomeComponent } from './home.component';
+import { RoundsComponent } from './rounds/rounds.component';
+import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from '../core/auth-guard.service';
+import { AdminGuard } from '../core/admin-guard.service';
 
 const homeRoutes: Routes = [
   {
@@ -12,6 +14,11 @@ const homeRoutes: Routes = [
       {
         path: "rounds",
         component: RoundsComponent
+      },
+      {
+        path: "admin",
+        component: AdminComponent,
+        canActivate: [AdminGuard]
       }
     ],
     canActivate: [AuthGuard]

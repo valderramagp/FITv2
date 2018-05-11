@@ -1,0 +1,33 @@
+<div class="modal-header">
+	<h5 class="modal-title">{{user?.nombre}} {{user?.apellido}} </h5>
+	<button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<div class="modal-body">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Round</th>
+				<th>R. Fisico</th>
+				<th>R. Espiritual</th>
+				<th>R. Alimentos</th>
+				<th>R. Personal</th>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let round of rounds; let i = index">
+				<td> {{ i + 1 }} </td>
+				<td> {{ (user?.rounds[i]?.challenges[0] || 0) | percent }} </td>
+				<td> {{ (user?.rounds[i]?.challenges[1] || 0) | percent }} </td>
+				<td> {{ (user?.rounds[i]?.challenges[2] || 0) | percent }} </td>
+				<td> {{ (user?.rounds[i]?.challenges[3] || 0) | percent }} </td>
+				<td> {{ (user?.rounds[i]?.totalProgress || 0) | percent }} </td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-primary" (click)="modal.hide()">Cerrar</button>
+</div>

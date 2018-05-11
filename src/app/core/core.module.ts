@@ -6,6 +6,7 @@ import { UserService } from './user.service';
 import { LoaderService } from './loader.service';
 import { ModalErrorComponent } from './components/modal-error/modal-error.component';
 import { ModalOutputService } from './modal-output.service';
+import { AdminGuard } from './admin-guard.service';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ export class CoreModule {
       providers: [
           AuthGuard,
           LoginGuard,
+          AdminGuard,
           UserService,
           LoaderService,
           ModalOutputService
